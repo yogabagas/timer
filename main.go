@@ -17,13 +17,15 @@ func main() {
 func timer(req chan string) {
 
 	ticker := time.NewTicker(time.Second)
+	// var ti time.Time
 
 	for {
 		select {
 		case <-req:
 			return
 		case t := <-ticker.C:
-			fmt.Println("TIME", fmt.Sprintf("%d:%d:%d", t.Hour(), t.Minute(), t.Second()))
+			h, m, s := t.Clock()
+			fmt.Println("TIME", fmt.Sprintf("%d:%d:%d", h, m, s))
 		}
 	}
 
